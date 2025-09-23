@@ -1,0 +1,574 @@
+
+@font-face {
+    font-family: 'first';
+    src: url('/assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    /* DM sans */
+    font-family: 'second';
+    src: url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+* {
+    box-sizing: border-box;
+    
+}
+
+
+body{
+   margin: 2em 4rem;
+   background-color:  hsl(243, 96%, 9%);
+   color: #FFFFFF;
+   font-size: 16px;
+   margin-bottom: 100px;
+   overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+/* Remove margin on mobile (screens less than 600px wide) */
+@media (max-width: 599px) {
+   body {
+      margin: 0em;
+       overflow-y: smooth;
+      
+      
+   }
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.units{
+  position: relative;
+    font-family: second;
+    display: flex;
+    justify-content: space-between;
+    background-color:  hsl(243, 27%, 20%);
+    padding: 12px 16px;
+    border-radius: 8px;
+    gap: 0.5em;
+    border: none;
+    color: #FFFFFF;
+} 
+
+
+.dropdown-content {
+    display: none;
+    font-family: second;
+    position: absolute;
+    /* display: flex; */
+    text-align: left;
+    flex-direction: column;
+    min-width: 220px;
+    border-radius: 12px;
+    margin-top: 0.3em;
+    transform:translate(-50%,1%) ;
+    color: #FFFFFF;
+    background-color: hsl(243, 27%, 20%);
+    border: 1px solid;
+    border-color:hsl(243, 23%, 30%);
+    border-radius: 12px;
+    padding: 5px;
+    z-index: 1;
+}
+.dropdown-content.open {
+    display: flex;
+}
+
+
+
+.dropdown-content label{
+  
+   color: hsl(240, 6%, 70%);
+   border-top: 2px solid hsl(243, 23%, 30%); /* thickness & color */
+   padding-top: 5px;           /* spacing between text and border */
+   display: block;
+   padding: 10px 15px;
+  
+  
+}
+
+
+.units-button{
+    
+    text-align: left;
+    font-size: 1.2em;
+    font-family: second;
+    color: #FFFFFF;
+    background-color: hsl(243, 27%, 20%);
+    border: none;
+    margin: 1px;
+    border-radius: 8px;
+    padding: 10px 15px;
+   
+}
+
+
+.units-button:hover{
+  background-color:hsl(243, 23%, 24%) ;
+}
+
+
+
+/* Greetings */
+
+.greetings{
+    font-size:1.8em;
+    font-family: first;
+ 
+    
+}
+.searchbar{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 3vh;
+    
+}
+
+input[type="text"] {
+  position: relative;
+  border-radius: 12px;  
+  border: none;
+  background-color: hsl(243, 27%, 20%);
+  color:#FFFFFF;
+  width: 20vw;
+  height: auto;
+  padding: 16px 50px;
+  border: none;
+  outline: none;
+  
+}
+input::placeholder {
+ color:  hsl(250, 6%, 84%);
+ font-size: 20px;
+  background-color: hsl(243, 27%, 20%);
+}
+/* Autofill fix */
+input[type="text"]:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px hsl(243, 27%, 20%) inset !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border-radius: 12px; /* keep corners consistent */
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+
+
+
+.searchicon{
+  position: relative;
+  transform: translate(200%,25%);
+  /* width: 100px; */
+  z-index:1;
+}
+
+ .searchbarbutton{
+     font-family: second;
+     border-radius: 12px;
+     border: none;
+     background-color:  hsl(233, 67%, 56%);
+     color: #FFFFFF;
+     padding: 16px 24px;
+     font-size: 20px;
+ }
+ .searchbarbutton:hover{
+  background-color:  hsl(248, 70%, 36%);
+ }
+ /* suggestion for finding the city */
+.suggestions {
+  position: absolute;
+  background: hsl(243, 27%, 20%);
+  border-radius: 8px;
+  margin-top: 5px;
+  width: 20vw; /* match input width */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  color: white;
+}
+
+.suggestions div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions div:hover {
+  background: hsl(243, 27%, 30%);
+}
+ /* h  */
+ h1,h2,h3{
+  margin:0.3em;
+ }
+
+.image-container {
+  position: relative;
+  display: inline-block;  
+  max-height: 300px;
+}
+
+.inner-container {
+  position: absolute;       
+  top: 0; left: 0;          
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;      
+  align-items: center;      
+  justify-content: space-evenly;  
+  pointer-events: none;    
+}
+.bigimage{
+  max-width: 100%;
+  height: auto;
+}
+
+.sunicon {
+    width: 105px;
+    height: auto;
+    transform: translateX(4%); 
+    
+}
+
+
+.degree {
+    font-family: second;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 5em;
+    /* margin-right: 15px; */
+   transform: translateX(-10%); 
+   z-index: 1;
+    
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 2em;
+   gap: 0;
+}
+
+.city,.date{
+    margin: 5px;
+    font-family: second;
+}
+
+.city{
+    font-weight: 500;
+    font-size: 1.5em;
+}
+.date{
+    opacity: 80%;
+}
+
+/* main container */
+.main-container{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 100vh;
+    
+}
+/* overall left container */
+
+.overall-leftcontainer{
+  max-width: 45vw;
+}
+
+
+
+
+/* left container */
+.left-container{
+     display: flex; 
+     flex-direction: row; 
+     justify-content: space-between; 
+     gap: 20px;
+}
+.description{
+    font: second;
+    font-size: 1.2em;
+    font-weight: 300;
+    flex: 1;
+    line-height: 20px;
+    background-color: hsl(243, 27%, 20%);
+    border: 1px solid;
+    border-color: hsl(243, 23%, 30%);
+    border-radius:12px;
+    text-align: left;
+    padding-left: 20px;
+    margin-top: 10px;  
+    color: hsl(250, 6%, 84%);
+
+}
+.data{
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+/* left last container */
+
+.daily-container{
+     display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+
+.daily{
+    background-color: hsl(243, 27%, 20%);
+    border: 1px solid;
+    border-color: hsl(243, 23%, 30%);
+    border-radius: 12px;
+    text-align: center;
+    margin: 10px 0px;
+    padding: 16px ;
+   
+}
+.daily-day{
+  margin: 0%;
+}
+.center-image {
+  display: block;
+
+  width: 65px;
+  height: auto;
+}
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* .skeleton-box {
+  width: 60px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-block;
+   width: 100%;
+  height: 100%;
+  flex: 1;
+} */
+
+
+/* Right side container */
+.right-container{
+ 
+    display: flex;
+    flex-direction: column;
+    transform: translateX(5%); 
+    background-color:  hsl(243, 27%, 20%);
+    max-width: 400px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 15px;
+    max-height: 67vh;
+    box-sizing: border-box;
+    overflow-y: auto;       /* Enable vertical scrolling */
+    /* Optional: for a nice scrollbar */
+    scrollbar-width:thin;
+    scrollbar-color: #666 #222;       /* Firefox */
+}
+.right-container {
+  scrollbar-width: thin;
+  scrollbar-color: #302F4A transparent; 
+}
+
+/* Chrome, Edge, Safari */
+.right-container::-webkit-scrollbar {
+  width: 1px;   /* thin scrollbar */
+}
+
+.right-container::-webkit-scrollbar-track {
+  background: transparent;   /* no background, keeps it clean */
+  margin: 10px 0;             /* little spacing at top & bottom */
+}
+
+.right-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,#302F4A, #302F4A);
+  border-radius: 10px;
+  border: 1px solid hsl(243, 27%, 20%); /* matches container bg → makes it look inset */
+}
+
+.right-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+/* Day button default */
+.day-dropdown {
+    /* position: relative; */
+    font-family: second;
+  /* display: inline-block; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;                  /* space between text and image */
+  padding: 0.5em 1em;
+  background-color: hsl(243, 23%, 30%);
+  border-radius: 8px;
+  color: #FFFFFF;
+  border: none;
+  height: auto;
+}
+.day-dropdown > p,
+.day-dropdown > img {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* Dropdown button for days */
+.dropdown-button{
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  background-color:hsl(243, 27%, 20%);
+  transform: translate(-40%,5%);
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: hsl(243, 23%, 30%);
+  min-width: 200px;
+  padding: 10px;
+}
+.day-button{
+  font-size: 1.1em;
+  font-family: second;
+  font-weight: 100;
+  background-color:  hsl(243, 27%, 20%);
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 10px;
+  /* margin: 6px; */
+  
+}
+
+.day-button:hover{
+  background-color:  hsl(243, 23%, 24%);
+  border-radius: 8px;
+}
+.box{
+   font-size: 1.4em;
+}
+.clouds{
+  width: 50px;
+  margin-right: 20px;
+}
+.clouds-degree{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.hourly-forecast-scroll{
+  font-family: second;
+  font-weight: 100;
+  display: flex;
+  background-color: hsl(243, 23%, 24%);
+  border-radius: 8px;
+  padding:3px 15px;
+  margin: 10px;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  border: 1px solid;
+  border-color: hsl(243, 23%, 30%);
+}
+.single-side{
+ display: flex;
+ align-items: center;
+}
+h2{
+  font-family: second;
+font-weight: 100;
+}
+
+
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+  .bar{
+    display: block;
+  }
+
+
+  .greetings{
+    font-size: 1em;
+  }
+  .searchbar{
+      flex-wrap: nowrap;
+    /* display: block;
+    flex-wrap: nowrap; */
+  }
+
+  /* feels like */
+  .left-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex:1;
+  }
+
+.daily-container{
+    display: flex;
+    
+    /* flex-wrap: wrap; */
+}
+
+.daily{
+    margin:2px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px 10px;
+    padding: 16px ;
+}
+
+
+
+.daily-day{
+  margin: 0%;
+}
+.center-image {
+  display: block;
+  /* margin: 0 auto 12px auto; */
+  width: 65px;
+  height: auto;
+}
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+   
+}
+
+
+
+
+
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .greetings{
+    font-size: 1em;
+  }
+}
+
+
+
+
+
+
