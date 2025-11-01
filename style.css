@@ -20,6 +20,34 @@
     
 }
 
+/* CSS Variables for Dark Theme (Default) */
+:root {
+  --bg-primary: hsl(243, 96%, 9%);
+  --bg-secondary: hsl(243, 27%, 20%);
+  --bg-tertiary: hsl(243, 23%, 30%);
+  --bg-hover: hsl(243, 23%, 24%);
+  --bg-button: hsl(233, 67%, 56%);
+  --bg-button-hover: hsl(248, 70%, 36%);
+  --text-primary: #FFFFFF;
+  --text-secondary: hsl(250, 6%, 84%);
+  --text-muted: hsl(240, 6%, 70%);
+  --border-color: hsl(243, 23%, 30%);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: hsla(234, 67%, 94%, 0.74);
+  --bg-secondary: hsla(257, 100%, 94%, 0.644);
+  --bg-tertiary:  hsl(255, 100%, 95%);
+  --bg-hover: hsl(0, 0%, 85%);
+  --bg-button: hsl(233, 67%, 56%);
+  --bg-button-hover: hsl(248, 70%, 36%);
+  --text-primary: hsl(243, 96%, 9%);
+  --text-secondary: hsl(243, 27%, 20%);
+  --text-muted: hsl(240, 6%, 50%);
+  --border-color: hsl(0, 0%, 80%);
+}
+
 html {
    overflow-x: hidden;
    width: 100%;
@@ -28,14 +56,15 @@ html {
 
 body{
    margin: 2em 2em;
-   background-color:  hsl(243, 96%, 9%);
-   color: #FFFFFF;
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
    font-size: 16px;
    margin-bottom: 100px;
    overflow-y: auto;
    overflow-x: hidden;
    width: 100%;
    max-width: 100%;
+   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Remove margin on mobile (screens less than 600px wide) */
@@ -62,11 +91,43 @@ body{
     max-width: 100%;
     box-sizing: border-box;
     padding-right: 4rem; 
-
+    gap: 12px;
 }
 
 .dropdown {
     position: relative;
+}
+
+.theme-toggle {
+    position: relative;
+    font-family: second;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-secondary);
+    padding: 5px 10px;
+    border-radius: 25px;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 40px;
+    height: 40px;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-hover);
+    transform: scale(1.05);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 .units{
@@ -74,12 +135,13 @@ body{
     font-family: second;
     display: flex;
     justify-content: space-between;
-    background-color:  hsl(243, 27%, 20%);
+    background-color: var(--bg-secondary);
     padding: 12px 16px;
     border-radius: 8px;
     gap: 0.5em;
     border: none;
-    color: #FFFFFF;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease;
 } 
 
 
@@ -95,12 +157,13 @@ body{
     right: 0; /* Align to right edge of button */
     top: 100%; /* Position below the button */
     transform: translateY(1%); /* Small vertical offset */
-    color: #FFFFFF;
-    background-color: hsl(243, 27%, 20%);
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
     border: 1px solid;
-    border-color:hsl(243, 23%, 30%);
+    border-color: var(--border-color);
     padding: 5px;
     z-index: 1;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .dropdown-content.open {
     display: flex;
@@ -109,34 +172,29 @@ body{
 
 
 .dropdown-content label{
-  
-   color: hsl(240, 6%, 70%);
-   border-top: 2px solid hsl(243, 23%, 30%); /* thickness & color */
+   color: var(--text-muted);
+   border-top: 2px solid var(--border-color); /* thickness & color */
    padding-top: 5px;           /* spacing between text and border */
    display: block;
    padding: 10px 15px;
-  
-  
 }
 
 
 .units-button{
-    
     text-align: left;
     font-size: 1.2em;
     font-family: second;
-    color: #FFFFFF;
-    background-color: hsl(243, 27%, 20%);
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
     border: none;
     margin: 1px;
     border-radius: 8px;
     padding: 10px 15px;
-   
+    transition: background-color 0.3s ease;
 }
 
-
 .units-button:hover{
-  background-color:hsl(243, 23%, 24%) ;
+  background-color: var(--bg-hover);
 }
 
 
@@ -163,24 +221,24 @@ input[type="text"] {
   position: relative;
   border-radius: 12px;  
   border: none;
-  background-color: hsl(243, 27%, 20%);
-  color:#FFFFFF;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   width: 20vw;
   height: auto;
   padding: 16px 50px;
   border: none;
   outline: none;
-  
+  transition: background-color 0.3s ease;
 }
 input::placeholder {
- color:  hsl(250, 6%, 84%);
+ color: var(--text-secondary);
  font-size: 20px;
-  background-color: hsl(243, 27%, 20%);
+  background-color: var(--bg-secondary);
 }
 /* Autofill fix */
 input[type="text"]:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px hsl(243, 27%, 20%) inset !important;
-  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg-secondary) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
   border-radius: 12px; /* keep corners consistent */
   transition: background-color 5000s ease-in-out 0s !important;
 }
@@ -199,27 +257,29 @@ input[type="text"]:-webkit-autofill {
      font-family: second;
      border-radius: 12px;
      border: none;
-     background-color:  hsl(233, 67%, 56%);
-     color: #FFFFFF;
+     background-color: var(--bg-button);
+     color: var(--text-primary);
      padding: 10px 24px;
      font-size: 20px;
      flex-shrink: 0;
      box-sizing: border-box;
+     transition: background-color 0.3s ease;
  }
  .searchbarbutton:hover{
-  background-color:  hsl(248, 70%, 36%);
+  background-color: var(--bg-button-hover);
  }
  /* suggestion for finding the city */
 .suggestions {
   position: absolute;
-  background: hsl(243, 27%, 20%);
+  background: var(--bg-secondary);
   border-radius: 8px;
   margin-top: 5px;
   width: 20vw; /* match input width */
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
-  color: white;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
 }
 
 .suggestions div {
@@ -228,7 +288,7 @@ input[type="text"]:-webkit-autofill {
 }
 
 .suggestions div:hover {
-  background: hsl(243, 27%, 30%);
+  background: var(--bg-hover);
 }
  /* h  */
  h1,h2,h3{
@@ -340,14 +400,15 @@ input[type="text"]:-webkit-autofill {
     font-size: 1.2em;
     font-weight: 300;
     flex: 1;
-    background-color: hsl(243, 27%, 20%);
+    background-color: var(--bg-secondary);
     border: 1px solid;
-    border-color: hsl(243, 23%, 30%);
+    border-color: var(--border-color);
     border-radius:12px;
     margin-top: 10px;  
-    color: hsl(250, 6%, 84%);
+    color: var(--text-secondary);
     display: block;
     padding: 12px 16px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .data{
     font-size: 1.8em;
@@ -364,14 +425,14 @@ input[type="text"]:-webkit-autofill {
 }
 
 .daily{
-    background-color: hsl(243, 27%, 20%);
+    background-color: var(--bg-secondary);
     border: 1px solid;
-    border-color: hsl(243, 23%, 30%);
+    border-color: var(--border-color);
     border-radius: 12px;
     text-align: center;
     margin: 10px 0px;
-    padding: 16px ;
-   
+    padding: 16px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .daily-day{
   margin: 0%;
@@ -403,7 +464,7 @@ input[type="text"]:-webkit-autofill {
 .right-container{
     display: flex;
     flex-direction: column;
-    background-color:  hsl(243, 27%, 20%);
+    background-color: var(--bg-secondary);
     max-width: 420px;
     width: 100%;
     border-radius: 20px;
@@ -412,12 +473,10 @@ input[type="text"]:-webkit-autofill {
     box-sizing: border-box;
     overflow-y: auto;
     scrollbar-width:thin;
-    scrollbar-color: #666 #222;
+    scrollbar-color: var(--border-color) var(--bg-secondary);
+    transition: background-color 0.3s ease;
 }
-.right-container {
-  scrollbar-width: thin;
-  scrollbar-color: #302F4A transparent; 
-}
+/* Removed duplicate - colors now use CSS variables */
 
 /* Chrome, Edge, Safari */
 .right-container::-webkit-scrollbar {
@@ -430,9 +489,9 @@ input[type="text"]:-webkit-autofill {
 }
 
 .right-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg,#302F4A, #302F4A);
+  background: var(--border-color);
   border-radius: 10px;
-  border: 1px solid hsl(243, 27%, 20%); /* matches container bg → makes it look inset */
+  border: 1px solid var(--bg-secondary); /* matches container bg → makes it look inset */
 }
 
 .right-header{
@@ -471,28 +530,28 @@ input[type="text"]:-webkit-autofill {
   display: none;
   position: absolute;
   flex-direction: column;
-  background-color:hsl(243, 27%, 20%);
+  background-color: var(--bg-secondary);
   transform: translate(-40%,5%);
   border-radius: 8px;
   border: 1px solid;
-  border-color: hsl(243, 23%, 30%);
+  border-color: var(--border-color);
   min-width: 200px;
   padding: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .day-button{
   font-size: 1.1em;
   font-family: second;
   font-weight: 100;
-  background-color:  hsl(243, 27%, 20%);
-  color: #FFFFFF;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   border: none;
   padding: 8px 10px;
-  /* margin: 6px; */
-  
+  transition: background-color 0.3s ease;
 }
 
 .day-button:hover{
-  background-color:  hsl(243, 23%, 24%);
+  background-color: var(--bg-hover);
   border-radius: 8px;
 }
 .box{
@@ -513,7 +572,7 @@ input[type="text"]:-webkit-autofill {
   font-family: second;
   font-weight: 100;
   display: flex;
-  background-color: hsl(243, 23%, 24%);
+  background-color: var(--bg-hover);
   border-radius: 8px;
   padding:3px 15px;
   margin: 10px;
@@ -521,7 +580,8 @@ input[type="text"]:-webkit-autofill {
   text-align: center;
   align-items: center;
   border: 1px solid;
-  border-color: hsl(243, 23%, 30%);
+  border-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .single-side{
  display: flex;

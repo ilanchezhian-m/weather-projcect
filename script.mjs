@@ -384,3 +384,41 @@ window.addEventListener('DOMContentLoaded', () => {
   getWeather();
 
 });
+
+// Theme Toggle Functionality
+window.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return;
+  
+  const themeIcon = themeToggle.querySelector('.theme-icon');
+  const html = document.documentElement;
+
+  // Get saved theme from localStorage or default to dark
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  
+  // Apply saved theme on page load
+  if (savedTheme === 'light') {
+    html.setAttribute('data-theme', 'light');
+    themeIcon.textContent = '☀️';
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    themeIcon.textContent = '🌙';
+  }
+
+  // Theme toggle button click handler
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = html.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      // Switch to light theme
+      html.setAttribute('data-theme', 'light');
+      themeIcon.textContent = '☀️';
+      localStorage.setItem('theme', 'light');
+    } else {
+      // Switch to dark theme
+      html.setAttribute('data-theme', 'dark');
+      themeIcon.textContent = '🌙';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+});
