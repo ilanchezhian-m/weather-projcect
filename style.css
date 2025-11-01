@@ -20,6 +20,11 @@
     
 }
 
+html {
+   overflow-x: hidden;
+   width: 100%;
+   max-width: 100%;
+}
 
 body{
    margin: 2em 4rem;
@@ -28,16 +33,19 @@ body{
    font-size: 16px;
    margin-bottom: 100px;
    overflow-y: auto;
-    overflow-x: hidden;
+   overflow-x: hidden;
+   width: 100%;
+   max-width: 100%;
 }
 
 /* Remove margin on mobile (screens less than 600px wide) */
 @media (max-width: 599px) {
    body {
       margin: 0em;
-       overflow-y: smooth;
-      
-      
+      overflow-y: smooth;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
    }
 }
 
@@ -45,7 +53,10 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-right: 4rem; /* Match body's right margin */
 }
 
 .units{
@@ -66,18 +77,18 @@ body{
     display: none;
     font-family: second;
     position: absolute;
-    /* display: flex; */
     text-align: left;
     flex-direction: column;
     min-width: 220px;
     border-radius: 12px;
     margin-top: 0.3em;
-    transform:translate(-50%,1%) ;
+    right: 0; /* Align to right edge of button */
+    top: 100%; /* Position below the button */
+    transform: translateY(1%); /* Small vertical offset */
     color: #FFFFFF;
     background-color: hsl(243, 27%, 20%);
     border: 1px solid;
     border-color:hsl(243, 23%, 30%);
-    border-radius: 12px;
     padding: 5px;
     z-index: 1;
 }
@@ -133,7 +144,9 @@ body{
     justify-content: center;
     gap: 16px;
     margin-bottom: 3vh;
-    
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 input[type="text"] {
@@ -178,8 +191,10 @@ input[type="text"]:-webkit-autofill {
      border: none;
      background-color:  hsl(233, 67%, 56%);
      color: #FFFFFF;
-     padding: 16px 24px;
+     padding: 10px 24px;
      font-size: 20px;
+     flex-shrink: 0;
+     box-sizing: border-box;
  }
  .searchbarbutton:hover{
   background-color:  hsl(248, 70%, 36%);
@@ -212,8 +227,12 @@ input[type="text"]:-webkit-autofill {
 
 .image-container {
   position: relative;
-  display: inline-block;  
-  max-height: 300px;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(220px, 30vh, 360px);
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 .inner-container {
@@ -228,15 +247,17 @@ input[type="text"]:-webkit-autofill {
   pointer-events: none;    
 }
 .bigimage{
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
 }
 
 .sunicon {
-    width: 105px;
+    width: clamp(56px, 8vw, 105px);
     height: auto;
     transform: translateX(4%); 
-    
 }
 
 
@@ -244,24 +265,24 @@ input[type="text"]:-webkit-autofill {
     font-family: second;
     font-style: italic;
     font-weight: 600;
-    font-size: 5em;
-    /* margin-right: 15px; */
+    font-size: clamp(2.5rem, 6vw, 5rem);
    transform: translateX(-10%); 
    z-index: 1;
-    
 }
 
 .location-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 2em;
-   gap: 0;
+  font-size: clamp(1.1em, 2.5vw, 1.5em);
+  gap: 0;
+  max-width: 60%;
 }
 
 .city,.date{
-    margin: 5px;
+    margin: 5px 0;
     font-family: second;
+    overflow-wrap: anywhere;
 }
 
 .city{
@@ -274,16 +295,21 @@ input[type="text"]:-webkit-autofill {
 
 /* main container */
 .main-container{ 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 100vh;
-    
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 24px;
+    align-items: start;
+    max-height: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 /* overall left container */
 
 .overall-leftcontainer{
-  max-width: 45vw;
+  width: 100%;
 }
 
 
@@ -301,28 +327,27 @@ input[type="text"]:-webkit-autofill {
     font-size: 1.2em;
     font-weight: 300;
     flex: 1;
-    line-height: 20px;
     background-color: hsl(243, 27%, 20%);
     border: 1px solid;
     border-color: hsl(243, 23%, 30%);
     border-radius:12px;
-    text-align: left;
-    padding-left: 20px;
     margin-top: 10px;  
     color: hsl(250, 6%, 84%);
-
+    display: block;
+    padding: 12px 16px;
 }
 .data{
-    font-size: 2em;
-    margin-bottom: 0.5em;
+    font-size: 1.8em;
+    line-height: 1.2;
+    margin: 6px 0 0 0;
 }
 
 /* left last container */
 
 .daily-container{
-     display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
 }
 
 .daily{
@@ -363,21 +388,18 @@ input[type="text"]:-webkit-autofill {
 
 /* Right side container */
 .right-container{
- 
     display: flex;
     flex-direction: column;
-    transform: translateX(5%); 
     background-color:  hsl(243, 27%, 20%);
-    max-width: 400px;
+    max-width: 420px;
     width: 100%;
     border-radius: 20px;
     padding: 15px;
     max-height: 67vh;
     box-sizing: border-box;
-    overflow-y: auto;       /* Enable vertical scrolling */
-    /* Optional: for a nice scrollbar */
+    overflow-y: auto;
     scrollbar-width:thin;
-    scrollbar-color: #666 #222;       /* Firefox */
+    scrollbar-color: #666 #222;
 }
 .right-container {
   scrollbar-width: thin;
@@ -501,39 +523,151 @@ font-weight: 100;
 
 /* Mobile (up to 767px) */
 @media (max-width: 767px) {
+  body{
+    margin: 1rem;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .bar{
     display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
-
 
   .greetings{
     font-size: 1em;
   }
+  
   .searchbar{
-      flex-wrap: nowrap;
-    /* display: block;
-    flex-wrap: nowrap; */
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    gap: 12px;
+    padding: 0 4px;
+  }
+  
+  .searchbarbutton{
+    width: auto;
+    flex: 1 1 auto;
+    min-width: fit-content;
+  }
+  
+  .bar{
+    flex: 1 1 100%;
+    width: 100%;
   }
 
-  /* feels like */
+  .main-container{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 8px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .right-container{
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input[type="text"]{
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 44px;
+    box-sizing: border-box;
+  }
+  
+  .suggestions{ 
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .searchicon{
+    transform: translate(100%,25%);
+  }
+  
+  .inner-container{
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .location-info{
+    font-size: 1.1em;
+    max-width: 70%;
+  }
+  
+  .city{
+    font-size: 1.1em;
+  }
+  
+  .date{
+    font-size: 0.95em;
+  }
+  
+  .degree{
+    font-size: clamp(2rem, 7vw, 3.5rem);
+  }
+  
+  .data{
+    font-size: 1.5em;
+  }
+
   .left-container{
     flex-direction: row;
     flex-wrap: wrap;
-    flex:1;
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-.daily-container{
-    display: flex;
-    
-    /* flex-wrap: wrap; */
-}
+  .daily-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+  }
 
-.daily{
-    margin:2px;
-    padding: 10px;
-    text-align: center;
-    margin: 10px 10px;
-    padding: 16px ;
+  .daily{
+    margin: 10px 0px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  .image-container{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .overall-leftcontainer{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .header{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 4px;
+    padding-right: 0; /* Remove padding on mobile since body margin is 0 */
+  }
+  
+  .dropdown-content {
+    right: 0;
+    transform: translateY(1%);
+  }
 }
 
 
@@ -553,17 +687,74 @@ font-weight: 100;
 }
 
 
-   
-}
-
-
-
-
-
 /* Tablet (768px to 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .greetings{
     font-size: 1em;
+  }
+  
+  .main-container{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Desktop medium (<= 1200px) */
+@media (max-width: 1200px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .main-container{
+    grid-template-columns: 1fr 360px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Laptop / Tablet landscape (<= 992px) */
+@media (max-width: 992px) {
+  body{
+    margin: 1.5rem;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .header{
+    padding-right: 1.5rem; /* Match body's right margin */
+  }
+  
+  .main-container{
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .right-container{
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    order: 2;
+    box-sizing: border-box;
+  }
+}
+
+/* Force daily forecast to one row on large screens */
+@media (min-width: 992px) {
+  .daily-container{
+    grid-template-columns: repeat(7, minmax(110px, 1fr));
   }
 }
 
