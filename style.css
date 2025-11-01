@@ -27,7 +27,7 @@ html {
 }
 
 body{
-   margin: 2em 4rem;
+   margin: 2em 2em;
    background-color:  hsl(243, 96%, 9%);
    color: #FFFFFF;
    font-size: 16px;
@@ -41,11 +41,16 @@ body{
 /* Remove margin on mobile (screens less than 600px wide) */
 @media (max-width: 599px) {
    body {
-      margin: 0em;
+      margin: 0;
+      margin-bottom: 100px;
       overflow-y: smooth;
       overflow-x: hidden;
       width: 100%;
       max-width: 100%;
+   }
+   
+   .main-container {
+     padding: 0 12px;
    }
 }
 
@@ -56,7 +61,12 @@ body{
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    padding-right: 4rem; /* Match body's right margin */
+    padding-right: 4rem; 
+
+}
+
+.dropdown {
+    position: relative;
 }
 
 .units{
@@ -244,7 +254,9 @@ input[type="text"]:-webkit-autofill {
   flex-direction: row;      
   align-items: center;      
   justify-content: space-evenly;  
-  pointer-events: none;    
+  pointer-events: none;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 .bigimage{
   width: 100%;
@@ -287,10 +299,11 @@ input[type="text"]:-webkit-autofill {
 
 .city{
     font-weight: 500;
-    font-size: 1.5em;
+    font-size: 1.8em;
 }
 .date{
     opacity: 80%;
+    font-size: 1.2em;
 }
 
 /* main container */
@@ -524,7 +537,8 @@ font-weight: 100;
 /* Mobile (up to 767px) */
 @media (max-width: 767px) {
   body{
-    margin: 1rem;
+    margin: 0;
+    margin-bottom: 100px;
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
@@ -547,13 +561,12 @@ font-weight: 100;
     max-width: 100%;
     box-sizing: border-box;
     gap: 12px;
-    padding: 0 4px;
+    padding: 0 12px; /* Match main-container padding */
   }
   
   .searchbarbutton{
     width: auto;
-    flex: 1 1 auto;
-    min-width: fit-content;
+
   }
   
   .bar{
@@ -564,7 +577,7 @@ font-weight: 100;
   .main-container{
     grid-template-columns: 1fr;
     gap: 16px;
-    padding: 0 8px;
+    padding: 0 12px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -591,7 +604,7 @@ font-weight: 100;
   }
   
   .searchicon{
-    transform: translate(100%,25%);
+    transform: translate(100%,170%);
   }
   
   .inner-container{
@@ -606,11 +619,15 @@ font-weight: 100;
   }
   
   .city{
-    font-size: 1.1em;
+    font-size: 1.3em;
   }
   
   .date{
-    font-size: 0.95em;
+    font-size: 1.05em;
+  }
+  
+  .inner-container{
+    padding: 0 12px;
   }
   
   .degree{
@@ -660,8 +677,7 @@ font-weight: 100;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    padding: 0 4px;
-    padding-right: 0; /* Remove padding on mobile since body margin is 0 */
+    padding: 0 12px; /* Match main-container padding */
   }
   
   .dropdown-content {
@@ -695,6 +711,11 @@ font-weight: 100;
     max-width: 100%;
   }
   
+  body {
+    margin: 2em 0;
+    margin-bottom: 100px;
+  }
+  
   .greetings{
     font-size: 1em;
   }
@@ -703,6 +724,7 @@ font-weight: 100;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    padding: 0 20px; /* Small internal padding for tablet */
   }
 }
 
@@ -725,14 +747,11 @@ font-weight: 100;
 /* Laptop / Tablet landscape (<= 992px) */
 @media (max-width: 992px) {
   body{
-    margin: 1.5rem;
+    margin: 2em 0;
+    margin-bottom: 100px;
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
-  }
-  
-  .header{
-    padding-right: 1.5rem; /* Match body's right margin */
   }
   
   .main-container{
@@ -740,6 +759,7 @@ font-weight: 100;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    padding: 0 20px; /* Spacing for tablet/laptop */
   }
   
   .right-container{
